@@ -1,30 +1,51 @@
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Test Web</title>
-    <style>
-        a {
-            color: black;
-        }
-        h1 {
-            text-align: center;
-            font-size: 44pt;
-        }
-    </style>
+  <meta charset="utf-8">
+  <title>Test Web</title>
+  <style>
+    a {
+      color: black;
+    }
+    h1 {
+      text-align: center;
+      font-size: 45pt;
+      border-bottom: 1px solid black;
+      padding: 20px;
+      margin-bottom: 0px;
+    }
+
+    ol {
+      border-right: 1px solid black;
+      /* width: 20%; */
+      margin: 0px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+    div {
+      padding-left: 20px;
+    }
+    #grid {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+    }
+  </style>
 </head>
 
 <body>
-    <h1>Web Main</h1>
+  <h1>Web Main</h1>
+  <div id="grid">
     <ol>
-        <li>
-            <a href="first.html">first</a>
-        </li>
-        <li>
-            <a href="second.html">second</a>
-        </li>
-        <li>
-            <a href="third.html">third</a>
-        </li>
+      <li><a href="first.html">first</a></li>
+      <li><a href="second.html">second</a></li>
+      <li><a href="third.html">third</a></li>
     </ol>
+    <div>
+      <p>
+        here is some paragraph<br>I'm god of html
+      </p>
+    </div>
+  </div>
 </body>
+
 </html>
