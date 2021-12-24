@@ -1,6 +1,7 @@
 import {
-  Hill
-} from "./hill.js";
+  DotsController
+} from "./dots.js";
+
 
 class App {
   constructor() {
@@ -8,45 +9,46 @@ class App {
     this.ctx = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
 
-    this.hills = [
-      new Hill("#fd6bea", 0.2, 10),
-      new Hill("#ff59c2", 0.5, 6),
-      new Hill("#ff4674", 1.4, 4),
-    ];
+    this.dotsController = new DotsController(10);
 
     window.addEventListener("resize", this.resize.bind(this), false);
     this.resize();
 
+    
     requestAnimationFrame(this.animate.bind(this));
   }
 
-  resize() {
+  resize() {   
     this.stageWidth = document.body.clientWidth;
     this.stageHeight = document.body.clientHeight;
 
     this.canvas.width = this.stageWidth;
     this.canvas.height = this.stageHeight;
 
-    for (let i = 0; i < this.hills.length; i++) {
-      this.hills[i].resize(this.stageWidth, this.stageHeight);
-    }
+    this.initialize();
+  }
+
+  initialize() {
+    this.dotsController.initialize(this.stageWidth, this.stageHeight);
   }
 
   animate(t) {
-    // console.log(t);
     requestAnimationFrame(this.animate.bind(this));
 
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
+    this.dotsController.draw(t, this.ctx);
 
-    let dots;
-    for (let i = 0; i < this.hills.length; i++) {
-      dots = this.hills[i].draw(this.ctx);
-    }
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, this.stageHeight / 2);
+    this.ctx.lineTo(this.stageWidth, this.stageHeight / 2);
+    this.ctx.stroke();
+      
+    
   }
 }
 
 
 window.onload = () => {
   new App();
-};
+}
 
