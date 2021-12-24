@@ -1,0 +1,40 @@
+
+.flex {
+  margin-top: 100px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  /* flex-basis: 200px; */
+}
+
+div {
+  /* border: 1px solid red; */
+}
+
+span {
+  display: inline-block;
+  /* border: 1px solid cyan; */
+  width: 80px;
+  height: 300px;
+  padding: 20px;
+  transition: all 0.08s linear;
+}
+
+span:hover {
+  width: 120px;
+  height: 320px;
+  padding: 10px;
+}
+
+.current {
+  width: 120px;
+  height: 320px;
+  padding: 20px;
+}
+
+.inner {
+  height: 100%;
+  background-color: rgb(152, 255, 152);
+  border-radius: 15px;
+}
