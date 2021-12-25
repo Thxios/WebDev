@@ -14,10 +14,10 @@ class Dot {
 }
 
 
-export class DotsController {
+export class Wave {
   constructor(nDivides) {
     this.nDivides = nDivides;
-    this.nDots = nDivides + 3;
+    this.nDots = nDivides + 1;
 
     this.lastTime = 0;
 
@@ -35,12 +35,10 @@ export class DotsController {
     this.dots = [];
 
     for (let i = 0; i < this.nDots; i++) {
-      this.dots[i] = new Dot((i-1) * this.gap, 0);
+      this.dots[i] = new Dot(i * this.gap, 0);
     }
 
-    // this.dots[0].vy = 1000;
-    this.dots[5].vy = 1000;
-    this.dots[10].vy = -500;
+    this.dots[0].vy = -1000;
   }
 
   draw(t, ctx) {
@@ -48,41 +46,11 @@ export class DotsController {
     this.lastTime = t;
     // console.log(dt);
     this.update(dt);
-    
-    ctx.beginPath();
-
-    let prev = this.dots[1];
-    let prevCx = (this.dots[0].x + prev.x) / 2;
-    let prevCy = (this.dots[0].y + prev.y) / 2;
-
-
-    ctx.moveTo(prevCx, prevCy + this.originY);
-
-    for (let i = 2; i < this.nDots; i++) {
-      let cur = this.dots[i];
-
-      const cx = (prev.x + cur.x) / 2;
-      const cy = (prev.y + cur.y) / 2;
-      ctx.quadraticCurveTo(prev.x, prev.y + this.originY, cx, cy + this.originY);
-
-      prev = cur;
-      prevCx = cx;
-      prevCy = cy;
-    }
-
-    ctx.lineTo(prev.x, prev.y + this.originY);
-    ctx.lineTo(this.stageWidth, this.stageHeight);
-    ctx.lineTo(this.dots[0].x, this.stageHeight);
-    ctx.fillStyle = "#0095DD";
-    ctx.fill();
-    ctx.closePath();
-
-    
 
     for (let dot of this.dots) {
       ctx.beginPath();
-      ctx.arc(dot.x, dot.y + this.originY, 3, 0, Math.PI*2);
-      ctx.fillStyle = "#ff0000";
+      ctx.arc(dot.x, dot.y + this.originY, 5, 0, Math.PI*2);
+      ctx.fillStyle = "#0095DD";
       ctx.fill();
       ctx.closePath();
     }
@@ -93,10 +61,6 @@ export class DotsController {
     for (let i = 0; i < this.nDots; i++) {
       let dv = this.k * this.dots[i].y * dt;
       this.dots[i].vy -= dv;
-
-      // let rel = 0.001;
-      // if (i > 0) this.dots[i-1].vy -= rel * this.dots[i].vy;
-      // if (i < this.nDots - 1) this.dots[i+1].vy -= rel * this.dots[i].vy;
 
       let meanY = 0;
       if (i > 0) meanY += this.dots[i-1].y;
@@ -110,11 +74,8 @@ export class DotsController {
       let dy = this.dots[i].vy * dt;
       this.dots[i].y += dy;
 
-      // let relavance = 0.5 * 0.5;
-      // if (i > 0) this.dots[i-1].y -= dy * relavance;
-      // if (i < this.nDots - 1) this.dots[i+1].y -= dy * relavance;
-
       this.dots[i].vy *= decay;
+
     }
 
   }

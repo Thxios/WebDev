@@ -1,6 +1,9 @@
 import {
   DotsController
 } from "./dots.js";
+import {
+  Wave
+} from "./wave.js"
 
 
 class App {
@@ -9,7 +12,8 @@ class App {
     this.ctx = this.canvas.getContext("2d");
     document.body.appendChild(this.canvas);
 
-    this.dotsController = new DotsController(10);
+    this.dotsController = new DotsController(20);
+    // this.dotsController = new Wave(20);
 
     window.addEventListener("resize", this.resize.bind(this), false);
     this.resize();
