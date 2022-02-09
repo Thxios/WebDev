@@ -73,7 +73,7 @@ export class Hill {
     ctx.lineTo(this.points[0].x, this.stageHeight);
     ctx.fill();
     ctx.closePath();
-
+/*
     for (var dot of dots) {
       ctx.beginPath();
       ctx.arc(dot.x1, dot.y1, 5, 0, Math.PI*2);
@@ -85,7 +85,7 @@ export class Hill {
       ctx.fillStyle = "#0095DD";
       ctx.fill();
       ctx.closePath();
-    }
+    }*/
 
     return dots;
   }

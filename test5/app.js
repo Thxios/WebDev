@@ -9,9 +9,9 @@ class App {
     document.body.appendChild(this.canvas);
 
     this.hills = [
-      new Hill("#fd6bea", 0.2, 10),
-      new Hill("#ff59c2", 0.5, 6),
-      new Hill("#ff4674", 1.4, 4),
+      new Hill("#fd6bea", 0.5, 10),
+      new Hill("#ff59c2", 0.9, 6),
+      new Hill("#ff4674", 2.2, 4),
     ];
 
     window.addEventListener("resize", this.resize.bind(this), false);
